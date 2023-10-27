@@ -1,0 +1,57 @@
+﻿@page
+@    using TheTodoService.DataTransferObjects;
+    using TheToDoListApp.Web.Pages.ToDoList;
+    using TheToDoListApp.Service.DataTransferObjects;
+@model             CompletedToDoListModel
+@{
+    ViewData["Title"] = "CompletedToDoList";
+}
+
+<h3>ToDoList - Completed</h3>
+<hr />
+
+@if (Model.ToDoItems != null && Model.ToDoItems.Any())
+{
+    <table class="table table-dark table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Priory</th>
+                <th>Created</th>
+                <th>Finished</th>
+                <th>Completed</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ToDoItemDto item in Model.ToDoItems)
+            {
+
+                <tr>
+                    <form method="post" asp-page-handler="CompletedTask">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <td><a style="color: #fff" href="/ToDoList/EditToDoList/@item.Id">@item.TaskDescription</a></td>
+                        <td>@item.Priority</td>
+                        <td>@item.CreatedTime</td>
+                        <td>@item.FinishedTime</td>
+                        <td><input class="form-check-input" asp-for="@item.IsCompleted" type="submit" value="" checked></td>
+
+                    </form>
+
+                    <form method="post" asp-page-handler="DeleteTask">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <td>
+                            <button class="btn btn-danger" type="submit">Delete</button>
+                        </td>
+                    </form>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-primary" role="alert">
+        No completed todo items found.
+        </div>
+}

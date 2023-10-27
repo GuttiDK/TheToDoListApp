@@ -1,0 +1,80 @@
+@page
+@    using TheTodoService.DataTransferObjects;
+@    using TheTodoService.Enums;
+    using TheToDoListApp.Service.DataTransferObjects;
+    using TheToDoListApp.Web.Pages.ToDoList;
+    using TheToDoListApp.Service.Enums;
+@model             UnCompletedToDoListModel
+@{
+    ViewData["Title"] = "UnCompletedToDoList";
+}
+
+<h3>ToDoList - Uncompleted</h3>
+<a class="btn btn-success" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Create</a>
+<hr />
+
+@if (Model.ToDoItems != null && Model.ToDoItems.Any())
+{
+    <table class="table table-dark table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Priory</th>
+                <th>Created</th>
+                <th>Completed</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ToDoItemDto item in Model.ToDoItems)
+            {
+                <form method="post" asp-page-handler="CompletedTask">
+                    <tr>
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <td><a style="color: #fff;" href="/ToDoList/EditToDoList/@item.Id">@item.TaskDescription</a></td>
+                        <td>@item.Priority</td>
+                        <td>@item.CreatedTime</td>
+                        <td><input class="form-check-input" asp-for="@item.IsCompleted" type="submit" value=""></td>
+                    </tr>
+                </form>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-primary" role="alert">
+        No uncompleted todo items found.
+    </div>
+}
+
+
+
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Create a Task</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+        <div>
+            Here can you create a new todo item.
+            <hr />
+        </div>
+    <form method="post" asp-page-handler="CreateTask">
+        <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Description</span>
+        <input type="text" class="form-control" asp-for="Description" id="description" name="description">
+       </div>
+        <div class="input-group mb-3">
+          <label class="input-group-text" for="inputGroupSelect01">Priority</label>
+          <select class="form-select" asp-for="PriorityForm" name="priorityForm">
+            @foreach (PrioryEnumDto priorityEnum in Enum.GetValues(typeof(PrioryEnumDto)))
+            {
+                <option value="@priorityEnum">@priorityEnum</option>
+            }
+          </select>
+         </div>
+         <button class="btn btn-success" type="submit">Create</button>
+    </form>
+  </div>
+</div>
