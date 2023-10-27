@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.ObjectModel;
 using TheToDoListApp.Service.DataTransferObjects;
 using TheToDoListApp.Service.Interfaces;
-using TheTodoRepository.Enums;
+using TheToDoListApp.Repository.Enums;
 
 namespace TheToDoListApp.Web.Pages.ToDoList
 {

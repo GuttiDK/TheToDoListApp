@@ -6,7 +6,7 @@ using System.Reflection;
 using TheToDoListApp.Repository.Enums;
 using TheToDoListApp.Service.DataTransferObjects;
 using TheToDoListApp.Service.Interfaces;
-using TheTodoService.Enums;
+using TheToDoListApp.Service.Enums;
 
 namespace TheToDoListApp.Web.Pages.ToDoList
 {

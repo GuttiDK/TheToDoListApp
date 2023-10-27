@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TheTodoService.Enums;
+using TheToDoListApp.Service.Enums;
 using TheToDoListApp.Repository.Enums;
 
 namespace TheToDoListApp.Service.DataTransferObjects

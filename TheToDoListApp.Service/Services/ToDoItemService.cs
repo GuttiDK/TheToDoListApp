@@ -8,7 +8,7 @@ using TheToDoListApp.Repository.Interfaces;
 using TheToDoListApp.Repository.Models;
 using TheToDoListApp.Service.DataTransferObjects;
 using TheToDoListApp.Service.Interfaces;
-using TheTodoRepository.Repositories;
+using TheToDoListApp.Repository.Repositories;
 
 namespace TheToDoListApp.Service.Services
 {

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TheToDoListApp.Repository.Interfaces;
 using TheToDoListApp.Service.DataTransferObjects;
-using TheTodoRepository.Models;
+using TheToDoListApp.Repository.Models;
 
 namespace TheToDoListApp.Service.Interfaces
 {
