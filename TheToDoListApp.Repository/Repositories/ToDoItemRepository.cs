@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TheToDoListApp.Repository.Domain;
 using TheToDoListApp.Repository.Interfaces;
 using TheToDoListApp.Repository.Models;
@@ -32,9 +27,9 @@ namespace TheToDoListApp.Repository.Repositories
             return temp;
         }
 
-        public async Task<ToDoItem> GetByIDAsync(Guid id)
+        public async Task<ToDoItem?> GetByIDAsync(Guid id)
         {
-            return await _dbContext.Set<ToDoItem>().FindAsync(id);
+            return await _dbContext.ToDoItems.FindAsync(id);
         }
     }
 }

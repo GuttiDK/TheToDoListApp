@@ -1,12 +1,10 @@
-using System;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 using Moq;
 using TheToDoListApp.Repository.Enums;
+using TheToDoListApp.Repository.Interfaces;
 using TheToDoListApp.Repository.Models;
 using TheToDoListApp.Service.DataTransferObjects;
 using TheToDoListApp.Service.Interfaces;
-using Xunit;
 
 namespace TheToDoListApp.UnitTest
 {
@@ -67,6 +65,24 @@ namespace TheToDoListApp.UnitTest
             // Assert
             Assert.Equal(id, result.Id);
             Assert.Equal("Find me", result.TaskDescription);
+        }
+    }
+
+    public class ToDoItemRepositoryTests
+    {
+        [Fact]
+        public async Task GetById_Returns_Null_For_Non_Existing_Id()
+        {
+            // Arrange
+            var id = Guid.NewGuid();
+            var mockRepo = new Mock<IToDoItemRepository>();
+            mockRepo.Setup(r => r.GetByIDAsync(id)).ReturnsAsync((ToDoItem)null);
+
+            // Act
+            var result = await mockRepo.Object.GetByIDAsync(id);
+
+            // Assert
+            Assert.Null(result);
         }
     }
 }
