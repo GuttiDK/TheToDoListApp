@@ -9,23 +9,23 @@ using TheToDoListApp.Repository.Domain;
 
 #nullable disable
 
-namespace TheTodoRepository.Migrations
+namespace TheToDoListApp.Repository.Migrations
 {
     [DbContext(typeof(ToDoListContext))]
-    [Migration("20231009072135_updatedToDoItems")]
-    partial class updatedToDoItems
+    [Migration("20250804103749_addedsensitiveDb")]
+    partial class addedsensitiveDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "7.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("TheTodoRepository.Models.ToDoItem", b =>
+            modelBuilder.Entity("TheToDoListApp.Repository.Models.ToDoItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

@@ -8,18 +8,18 @@ namespace TheToDoListApp.Service.Services
     {
         public readonly IMapper _mapper;
 
+
+        public readonly MapperConfiguration _config = new(cfg =>
+        {
+            cfg.CreateMap<ToDoItem, ToDoItemDto>();
+            cfg.CreateMap<ToDoItemDto, ToDoItem>();
+        });
+
         public MappingService()
         {
-            MapperConfiguration config = new(cfg =>
-            {
-                cfg.CreateMap<ToDoItem, ToDoItemDto>();
-                cfg.CreateMap<ToDoItemDto, ToDoItem>();
-
-            });
-
             try
             {
-                _mapper = config.CreateMapper();
+                _mapper = _config.CreateMapper();
             }
             catch (Exception ex)
             {

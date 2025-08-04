@@ -9,29 +9,32 @@ using TheToDoListApp.Repository.Domain;
 
 #nullable disable
 
-namespace TheTodoRepository.Migrations
+namespace TheToDoListApp.Repository.Migrations
 {
     [DbContext(typeof(ToDoListContext))]
-    [Migration("20230922072500_addedToDoItem")]
-    partial class addedToDoItem
+    [Migration("20250804103907_AddedSen")]
+    partial class AddedSen
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "7.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("TheTodoRepository.Models.ToDoItem", b =>
+            modelBuilder.Entity("TheToDoListApp.Repository.Models.ToDoItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FinishedTime")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsCompleted")

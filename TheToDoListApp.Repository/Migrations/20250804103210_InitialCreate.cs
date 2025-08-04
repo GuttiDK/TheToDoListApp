@@ -3,12 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace TheTodoRepository.Migrations
+namespace TheToDoListApp.Repository.Migrations
 {
     /// <inheritdoc />
-#pragma warning disable IDE1006 // Naming Styles
-    public partial class addedToDoItem : Migration
-#pragma warning restore IDE1006 // Naming Styles
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,6 +17,7 @@ namespace TheTodoRepository.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FinishedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     TaskDescription = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
                     Priority = table.Column<int>(type: "int", nullable: false),
                     IsCompleted = table.Column<bool>(type: "bit", nullable: false)

@@ -8,21 +8,21 @@ using TheToDoListApp.Repository.Domain;
 
 #nullable disable
 
-namespace TheTodoRepository.Migrations
+namespace TheToDoListApp.Repository.Migrations
 {
     [DbContext(typeof(ToDoListContext))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    partial class ToDoListContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.11")
+                .HasAnnotation("ProductVersion", "7.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("TheTodoRepository.Models.ToDoItem", b =>
+            modelBuilder.Entity("TheToDoListApp.Repository.Models.ToDoItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

@@ -34,7 +34,7 @@ namespace TheToDoListApp.Repository.Repositories
 
         public async Task<ToDoItem> GetByIDAsync(Guid id)
         {
-            return await _dbContext.ToDoItems.FirstOrDefaultAsync(x => x.Id == id);
+            return await _dbContext.Set<ToDoItem>().FindAsync(id);
         }
     }
 }

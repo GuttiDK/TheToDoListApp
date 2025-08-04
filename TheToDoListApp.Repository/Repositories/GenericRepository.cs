@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TheToDoListApp.Repository.Domain;
 using TheToDoListApp.Repository.Interfaces;
 
@@ -27,14 +22,35 @@ namespace TheToDoListApp.Repository.Repositories
 
         public async Task UpdateAsync(E entity)
         {
-            _dbContext.Set<E>().Attach(entity);
-            _dbContext.Entry(entity).State = EntityState.Modified;
+            var dbEntity = await _dbContext.Set<E>().FindAsync(GetKey(entity));
+            if (dbEntity != null)
+            {
+                _dbContext.Entry(dbEntity).CurrentValues.SetValues(entity);
+            }
+            else
+            {
+                _dbContext.Set<E>().Attach(entity);
+                _dbContext.Entry(entity).State = EntityState.Modified;
+            }
             await _dbContext.SaveChangesAsync();
         }
 
+
         public async Task DeleteAsync(E entity)
         {
-            _dbContext.Remove(entity);
+            var key = GetKey(entity);
+            var trackedEntity = await _dbContext.Set<E>().FindAsync(key);
+
+            if (trackedEntity != null)
+            {
+                _dbContext.Set<E>().Remove(trackedEntity);
+            }
+            else
+            {
+                _dbContext.Set<E>().Attach(entity);
+                _dbContext.Set<E>().Remove(entity);
+            }
+
             await _dbContext.SaveChangesAsync();
         }
 
@@ -43,5 +59,10 @@ namespace TheToDoListApp.Repository.Repositories
             ObservableCollection<E> temp = new(await _dbContext.Set<E>().AsNoTracking().ToListAsync());
             return temp;
         }
+
+        private object GetKey(E entity) =>
+            // Example for Guid Id property
+            entity.GetType().GetProperty("Id")?.GetValue(entity, null);
+
     }
 }
