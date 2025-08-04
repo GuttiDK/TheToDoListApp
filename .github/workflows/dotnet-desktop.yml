@@ -59,7 +59,7 @@ jobs:
       Solution_Name: TheToDoListApp.sln
       Test_Project_Path: TheToDoListApp.UnitTest\TheToDoListApp.UnitTest.csproj
       Wap_Project_Directory: TheToDoListApp
-      Wap_Project_Path: TheToDoListApp\TheToDoListApp.csproj              
+      Wap_Project_Path:  TheToDoListApp\TheToDoListApp.Web.csproj             
       
     steps:
     - name: Checkout
